@@ -20,6 +20,9 @@ public class ProductServlet extends HttpServlet {
     ICategoryDAO categoryDAO = new CategoryDAO();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
+
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -45,8 +48,12 @@ public class ProductServlet extends HttpServlet {
     private void showEditProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         Product product = productDAO.findById(id);
+        List<Category> categories = categoryDAO.findAll();
+        List<Product> products = productDAO.findAll();
+        request.setAttribute("product",products);
+        request.setAttribute("category",categories);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/edit.jsp");
-        request.setAttribute("product",product);
+        request.setAttribute("productedit",product);
         requestDispatcher.forward(request,response);
 
 
@@ -62,6 +69,11 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void showCreateProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        List<Category> categories = categoryDAO.findAll();
+        List<Product> products = productDAO.findAll();
+        request.setAttribute("product",products);
+        request.setAttribute("category",categories);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/create.jsp");
         requestDispatcher.forward(request,response);
     }
@@ -70,15 +82,24 @@ public class ProductServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/detail.jsp");
         int id = Integer.parseInt(request.getParameter("id"));
         Product product = productDAO.findById(id);
+        List<Product> products = productDAO.findAll();
         List<Category> categories = categoryDAO.findAll();
-        request.setAttribute("product",product);
-        request.setAttribute("cate",categories);
+        request.setAttribute("productdetail",product);
+        request.setAttribute("product",products);
+        request.setAttribute("category",categories);
         requestDispatcher.forward(request,response);
 
     }
 
     private void showList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
+        String indexPage = request.getParameter("index");
+        if (indexPage==null){
+            indexPage = "1";
+
+        }
+        int index = Integer.parseInt(indexPage);
+
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/product.jsp");
         List<Product> products;
         if (name != null && name != ""){
@@ -87,9 +108,16 @@ public class ProductServlet extends HttpServlet {
             products = productDAO.findAll();
         }
         List<Category> categories = categoryDAO.findAll();
-//        List<Category> categories = findAllCatagory(products);
+        int count = productDAO.getTotalProduct();
+        int endPage = count/3;
+        if (count%3!=0){
+            endPage++;
+        }
+        List<Product> productList = productDAO.paginProduct(index);
+        request.setAttribute("listA",productList);
         request.setAttribute("product",products);
-
+        request.setAttribute("name",name);
+        request.setAttribute("endP",endPage);
         request.setAttribute("category",categories);
         requestDispatcher.forward(request,response);
     }
@@ -105,6 +133,9 @@ public class ProductServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
+
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -149,11 +180,19 @@ public class ProductServlet extends HttpServlet {
         Product book = new Product(id,name, image, price, title,discription,cateID);
 //        userDAO.updateUser(book);
         productDAO.update(book);
+        List<Category> categories = categoryDAO.findAll();
+        List<Product> products = productDAO.findAll();
+        request.setAttribute("product",products);
+
+        request.setAttribute("category",categories);
         RequestDispatcher dispatcher = request.getRequestDispatcher("product/edit.jsp");
         dispatcher.forward(request, response);
     }
 
-    private void createProduct(HttpServletRequest request, HttpServletResponse response) {
+    private void createProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
+
         String name = request.getParameter("name");
         String image = request.getParameter("image");
         int price = Integer.parseInt(request.getParameter("price"));
@@ -161,5 +200,7 @@ public class ProductServlet extends HttpServlet {
         String discription = request.getParameter("discription");
         int cateID = Integer.parseInt(request.getParameter("cateID"));
         productDAO.add(new Product(name,image,price,title,discription,cateID));
+        RequestDispatcher dispatcher = request.getRequestDispatcher("product/create.jsp");
+        dispatcher.forward(request, response);
     }
 }

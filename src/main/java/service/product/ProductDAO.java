@@ -103,7 +103,8 @@ public class ProductDAO implements IProductDAO {
     @Override
     public boolean update(Product product) {
         boolean rowUpdated = false;
-        try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement("update product set name = ?,image= ?, price =?,title = ?, discription=?,cateID=? where id = ?;");) {
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement("update product set name = ?,image= ?, price =?,title = ?, discription=?,cateID=? where id = ?;");) {
             statement.setString(1, product.getName());
             statement.setString(2, product.getImage());
             statement.setInt(3, product.getPrice());
@@ -177,6 +178,41 @@ public class ProductDAO implements IProductDAO {
                 String discription = rs.getString("discription");
                 int cateID = rs.getInt("cateID");
                 products.add(new Product(id, name, image, price,title,discription,cateID));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return products;
+    }
+
+    @Override
+    public int getTotalProduct() {
+        try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("select count(*) from product");) {
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public List<Product> paginProduct(int index) {
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM product LIMIT ?, 9");) {
+            preparedStatement.setInt(1,(index-1)*3);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = Integer.parseInt(rs.getString("id"));
+                String name = rs.getString("name");
+                String image = rs.getString("image");
+                int price = rs.getInt("price");
+                String title = rs.getString("title");
+                String discription = rs.getString("discription");
+                int cateID = rs.getInt("cateID");
+                products.add(new Product(id,name,image,price,title,discription,cateID)) ;
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

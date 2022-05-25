@@ -11,4 +11,7 @@ public interface IProductDAO extends IGeneric<Product> {
     public List<Product> sortPriceASC();
 
     public List<Product> sortPriceDESC();
+
+    public int getTotalProduct();
+    public  List<Product> paginProduct(int index);
 }

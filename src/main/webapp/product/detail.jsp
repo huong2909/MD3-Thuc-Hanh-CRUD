@@ -32,97 +32,7 @@
 </head>
 
 <body>
-<!-- Top bar Start -->
-<div class="top-bar">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-6">
-                <i class="fa fa-envelope"></i>
-                support@email.com
-            </div>
-            <div class="col-sm-6">
-                <i class="fa fa-phone-alt"></i>
-                +012-345-6789
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Top bar End -->
-
-<!-- Nav Bar Start -->
-<div class="nav">
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-            <a href="#" class="navbar-brand">MENU</a>
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                <div class="navbar-nav mr-auto">
-                    <a href="index.html" class="nav-item nav-link">Home</a>
-                    <a href="product-list.html" class="nav-item nav-link">Products</a>
-                    <a href="product-detail.html" class="nav-item nav-link active">Product Detail</a>
-                    <a href="cart.html" class="nav-item nav-link">Cart</a>
-                    <a href="checkout.html" class="nav-item nav-link">Checkout</a>
-                    <a href="my-account.html" class="nav-item nav-link">My Account</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
-                        <div class="dropdown-menu">
-                            <a href="wishlist.html" class="dropdown-item">Wishlist</a>
-                            <a href="login.html" class="dropdown-item">Login & Register</a>
-                            <a href="contact.html" class="dropdown-item">Contact Us</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="navbar-nav ml-auto">
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
-                        <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item">Login</a>
-                            <a href="#" class="dropdown-item">Register</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
-</div>
-<!-- Nav Bar End -->
-
-<!-- Bottom Bar Start -->
-<div class="bottom-bar">
-    <div class="container-fluid">
-        <div class="row align-items-center">
-            <div class="col-md-3">
-                <div class="logo">
-                    <a href="index.html">
-                        <img src="../img/logo.png" alt="Logo">
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="search">
-                    <input type="text" placeholder="Search">
-                    <button><i class="fa fa-search"></i></button>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="user">
-                    <a href="wishlist.html" class="btn wishlist">
-                        <i class="fa fa-heart"></i>
-                        <span>(0)</span>
-                    </a>
-                    <a href="cart.html" class="btn cart">
-                        <i class="fa fa-shopping-cart"></i>
-                        <span>(0)</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Bottom Bar End -->
+<jsp:include page="navba.jsp"></jsp:include>
 
 <!-- Breadcrumb Start -->
 <div class="breadcrumb-wrap">
@@ -145,9 +55,9 @@
                     <div class="row align-items-center">
                         <div class="col-md-5">
 
-                              <c:forEach var="product" items="${product}">
+                              <c:forEach var="product" items="${productdetail}">
                                   <div class="product-slider-single normal-slider">
-                                <img src="${product.image}" alt="Product Image">
+                                <img src="${productdetail.image}" alt="Product Image">
                                   </div>
                               </c:forEach>
 <%--                            <c:forEach var="product" items="${product}">--%>
@@ -159,7 +69,7 @@
                         </div>
                         <div class="col-md-7">
                             <div class="product-content">
-                                <div class="title"><h2>${product.name}</h2></div>
+                                <div class="title"><h2>${productdetail.name}</h2></div>
                                 <div class="ratting">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -169,7 +79,7 @@
                                 </div>
                                 <div class="price">
                                     <h4>Giá:</h4>
-                                    <p>${product.price}</p>
+                                    <p>${productdetail.price}</p>
                                 </div>
                                 <div class="quantity">
                                     <h4>Quantity:</h4>
@@ -223,7 +133,7 @@
                             <div id="description" class="container tab-pane active">
                                 <h4>Product description</h4>
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum quam ac mi viverra dictum. In efficitur ipsum diam, at dignissim lorem tempor in. Vivamus tempor hendrerit finibus. Nulla tristique viverra nisl, sit amet bibendum ante suscipit non. Praesent in faucibus tellus, sed gravida lacus. Vivamus eu diam eros. Aliquam et sapien eget arcu rhoncus scelerisque. Suspendisse sit amet neque neque. Praesent suscipit et magna eu iaculis. Donec arcu libero, commodo ac est a, malesuada finibus dolor. Aenean in ex eu velit semper fermentum. In leo dui, aliquet sit amet eleifend sit amet, varius in turpis. Maecenas fermentum ut ligula at consectetur. Nullam et tortor leo.
+                                    Trước đây, để cho ra đời một bộ đồ là một kỳ tích. Những người thợ phải làm việc rất chuyên cần và vất vả, từ khâu thu gom chất liệu thô (da động vật, tơ sợi…) đến khâu cho ra đời những nguyên liệu như vải, lụa và đến khâu đo trực tiếp trên cơ thể, thiết kế mẫu, may, hoàn thiện sản phẩm. Cuộc Cách mạng Công nghiệp đã cho ra đời những dây chuyền sản xuất, đồng thời công nghệ hóa và hiện đại hóa quy trình sản xuất quần áo. Những thiết kế đã bắt đầu được sản xuất với số lượng lớn thay vì may đo từng mẫu.
                                 </p>
                             </div>
                             <div id="specification" class="container tab-pane fade">
@@ -429,143 +339,7 @@
                 </div>
             </div>
 
-            <!-- Side Bar Start -->
-            <div class="col-lg-4 sidebar">
-                <div class="sidebar-widget category">
-                    <h2 class="title">Category</h2>
-                    <nav class="navbar bg-light">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fa fa-female"></i>Fashion & Beauty</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fa fa-child"></i>Kids & Babies Clothes</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fa fa-tshirt"></i>Men & Women Clothes</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fa fa-mobile-alt"></i>Gadgets & Accessories</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fa fa-microchip"></i>Electronics & Accessories</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-
-                <div class="sidebar-widget widget-slider">
-                    <div class="sidebar-slider normal-slider">
-                        <div class="product-item">
-                            <div class="product-title">
-                                <a href="#">Product Name</a>
-                                <div class="ratting">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="product-image">
-                                <a href="product-detail.html">
-                                    <img src="../img/product-7.jpg" alt="Product Image">
-                                </a>
-                                <div class="product-action">
-                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
-                                    <a href="#"><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-price">
-                                <h3><span>$</span>99</h3>
-                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="product-title">
-                                <a href="#">Product Name</a>
-                                <div class="ratting">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="product-image">
-                                <a href="product-detail.html">
-                                    <img src="../img/product-8.jpg" alt="Product Image">
-                                </a>
-                                <div class="product-action">
-                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
-                                    <a href="#"><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-price">
-                                <h3><span>$</span>99</h3>
-                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="product-title">
-                                <a href="#">Product Name</a>
-                                <div class="ratting">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="product-image">
-                                <a href="product-detail.html">
-                                    <img src="../img/product-9.jpg" alt="Product Image">
-                                </a>
-                                <div class="product-action">
-                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
-                                    <a href="#"><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-price">
-                                <h3><span>$</span>99</h3>
-                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sidebar-widget brands">
-                    <h2 class="title">Our Brands</h2>
-                    <ul>
-                        <li><a href="#">Nulla </a><span>(45)</span></li>
-                        <li><a href="#">Curabitur </a><span>(34)</span></li>
-                        <li><a href="#">Nunc </a><span>(67)</span></li>
-                        <li><a href="#">Ullamcorper</a><span>(74)</span></li>
-                        <li><a href="#">Fusce </a><span>(89)</span></li>
-                        <li><a href="#">Sagittis</a><span>(28)</span></li>
-                    </ul>
-                </div>
-
-                <div class="sidebar-widget tag">
-                    <h2 class="title">Tags Cloud</h2>
-                    <a href="#">Lorem ipsum</a>
-                    <a href="#">Vivamus</a>
-                    <a href="#">Phasellus</a>
-                    <a href="#">pulvinar</a>
-                    <a href="#">Curabitur</a>
-                    <a href="#">Fusce</a>
-                    <a href="#">Sem quis</a>
-                    <a href="#">Mollis metus</a>
-                    <a href="#">Sit amet</a>
-                    <a href="#">Vel posuere</a>
-                    <a href="#">orci luctus</a>
-                    <a href="#">Nam lorem</a>
-                </div>
-            </div>
-            <!-- Side Bar End -->
+            <jsp:include page="sidebar.jsp"></jsp:include>
         </div>
     </div>
 </div>
@@ -586,96 +360,11 @@
 </div>
 <!-- Brand End -->
 
-<!-- Footer Start -->
-<div class="footer">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <div class="footer-widget">
-                    <h2>Get in Touch</h2>
-                    <div class="contact-info">
-                        <p><i class="fa fa-map-marker"></i>123 E Store, Los Angeles, USA</p>
-                        <p><i class="fa fa-envelope"></i>email@example.com</p>
-                        <p><i class="fa fa-phone"></i>+123-456-7890</p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-lg-3 col-md-6">
-                <div class="footer-widget">
-                    <h2>Follow Us</h2>
-                    <div class="contact-info">
-                        <div class="social">
-                            <a href=""><i class="fab fa-twitter"></i></a>
-                            <a href=""><i class="fab fa-facebook-f"></i></a>
-                            <a href=""><i class="fab fa-linkedin-in"></i></a>
-                            <a href=""><i class="fab fa-instagram"></i></a>
-                            <a href=""><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-lg-3 col-md-6">
-                <div class="footer-widget">
-                    <h2>Company Info</h2>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms & Condition</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="footer-widget">
-                    <h2>Purchase Info</h2>
-                    <ul>
-                        <li><a href="#">Pyament Policy</a></li>
-                        <li><a href="#">Shipping Policy</a></li>
-                        <li><a href="#">Return Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="row payment align-items-center">
-            <div class="col-md-6">
-                <div class="payment-method">
-                    <h2>We Accept:</h2>
-                    <img src="../img/payment-method.png" alt="Payment Method" />
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="payment-security">
-                    <h2>Secured By:</h2>
-                    <img src="../img/godaddy.svg" alt="Payment Security" />
-                    <img src="../img/norton.svg" alt="Payment Security" />
-                    <img src="../img/ssl.svg" alt="Payment Security" />
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Footer End -->
-
-<!-- Footer Bottom Start -->
-<div class="footer-bottom">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 copyright">
-                <p>Copyright &copy; <a href="https://htmlcodex.com">HTML Codex</a>. All Rights Reserved</p>
-            </div>
-
-            <div class="col-md-6 template-by">
-                <p>Template By <a href="https://htmlcodex.com">HTML Codex</a></p>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Footer Bottom End -->
 
 <!-- Back to Top -->
+<jsp:include page="footer.jsp"></jsp:include>
 <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
 <!-- JavaScript Libraries -->
